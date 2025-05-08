@@ -11,7 +11,7 @@ IMAP_SERVER = 'imap.example.com'
 GITHUB_TOKEN = 'your_github_token'
 REPO_NAME = 'your_username/your_repo'
 BRANCH = 'main'
-FILE_PATH = 'ban'  # Ścieżka do pliku w repozytorium
+FILE_PATH = 'ban1'  # Ścieżka do pliku w repozytorium
 
 def fetch_emails():
     # Połączenie z serwerem IMAP
@@ -73,7 +73,7 @@ def update_github_file(ip_addresses):
             sha=contents.sha if 'contents' in locals() else None,
             branch=BRANCH
         )
-        print(f"Dodano {len(new_ips)} nowych adresów IP do pliku ban.")
+        print(f"Dodano {len(new_ips)} nowych adresów IP do pliku ban1.")
     else:
         print("Nie znaleziono nowych adresów IP do dodania.")
 
