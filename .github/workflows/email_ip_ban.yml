@@ -1,0 +1,31 @@
+name: Email IP Ban Updater
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # 8:00 UTC (9:00 czasu polskiego)
+    - cron: '0 20 * * *' # 20:00 UTC (21:00 czasu polskiego)
+  workflow_dispatch:
+
+jobs:
+  update-ban:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install PyGithub
+        
+    - name: Run IP ban updater
+      env:
+        EMAIL: ${{ secrets.EMAIL }}
+        PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: python email_ip_ban_updater.py
